@@ -26,12 +26,12 @@ end
 fun {Get Dict Key}
     case Dict of
         nil then
-            raise domainError end
+            raise "Inexistent key" end
         [] (K#V)|Dict2 andthen K==Key then %found the value
             V
         
         [] (K#V)|Dict2 andthen K > Key then %there's not the key
-            raise domainError end
+            raise "Inexistent key" end
 
         [] (K#V)|Dict2 andthen K < Key then %keep looking for the key
             {Get Dict2 Key}
@@ -57,12 +57,3 @@ fun {Domain Dict} %returns a list of keys
         end
     end
 end
-
-declare Dict Value
-Dict = {NewCell {NewDictionary}}
-
-Dict := {Insert @Dict 4 1}
-Dict := {Insert @Dict 3 4}
-Dict := {Insert @Dict 5 3}
-
-{Browse {Domain @Dict}}
