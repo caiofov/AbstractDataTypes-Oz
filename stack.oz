@@ -32,3 +32,13 @@ fun {Size Stack} %Size of a stack
       end
    end
 end
+
+fun {Sum Stack} %sum of all elements
+   if {IsEmpty Stack} then
+      0
+   else
+      case Stack of H|T then
+         H+{Sum T}
+      end
+   end
+end
