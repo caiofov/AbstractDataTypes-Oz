@@ -25,7 +25,7 @@ fun {GetElement List Index} %returns an element of the list (using a given index
     end
 end
 
-fun {Reverse L}
+fun {Reverse L} %returns the reversed list
     case L of nil then
         nil
     [] X|Xr then
@@ -33,13 +33,11 @@ fun {Reverse L}
     end
 end
 
-fun {Sum L}
+fun {Sum L} %sum of all elements
     case L of
-    nil then
-        0
-    [] E1|L1 then
-        E1+{Sum L1}
+        nil then
+            0
+        [] E1|L1 then
+            E1+{Sum L1}
     end
 end
-
-{Browse {Sum [1 2 3]}}
