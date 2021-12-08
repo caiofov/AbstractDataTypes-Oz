@@ -19,12 +19,12 @@ end
 
 fun {Delete Queue X}
     case Queue of 
-    q(Front Back) then
+    q(nil nil) then
+        raise "Empty queue" end
+    [] q(Front Back) then
         F1 in 
             Front = X|F1
             {Check queue(F1 Back)}
-    [] q(nil nil) then
-        raise "Empty queue" end
     end
 end
 
@@ -34,8 +34,26 @@ fun {IsEmpty Queue}
     end
 end
 
+%some list function - - -- - 
+fun {Reverse L}
+    case L of nil then
+        nil
+    [] X|Xr then
+        {Append {Reverse Xr} [X]}
+    end
+end
+fun {Append List X} %add X to the end of the list
+    case List of
+    nil then
+        X
+    [] E|L then
+        E|{Append L X}
+    end
+end
+
 
 declare Q 
-Q = {NewQueue}
-
-{Browse {IsEmpty Q}}
+Q = {NewCell {NewQueue}}
+Q := {Insert @Q 2}
+{Browse @Q}
+{Browse {IsEmpty @Q}}
